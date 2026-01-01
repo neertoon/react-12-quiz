@@ -4,6 +4,7 @@ import QuestionTimer from "./QuestionTimer.jsx";
 import quizComplete from '../assets/quiz-complete.png';
 import Answers from "./Answers.jsx";
 import Question from "./Question.jsx";
+import Summary from "./Summary.jsx";
 export default function Quiz() {
 
     const [userAnswers, setUserAnswers] = useState([]);
@@ -18,10 +19,7 @@ export default function Quiz() {
     const handleSkipAnswer = useCallback(() => handleSelectAnswer(null), [handleSelectAnswer]);
 
     if (quizIsComplete) {
-        return <div id="summary">
-            <img src={quizComplete} alt="Trophy"></img>
-            <h2>Quiz Complete!</h2>
-        </div>
+        return <Summary userAnswers={userAnswers}></Summary>;
     }
 
     return (
