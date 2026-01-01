@@ -40,7 +40,7 @@ export default function Summary({ userAnswers }) {
                 }
 
                 return (
-                    <li>
+                    <li key={index}>
                         <h3>{index + 1}</h3>
                         <p className="question">
                             {QUESTIONS[index].text}
