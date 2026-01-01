@@ -6,6 +6,16 @@ import Answers from "./Answers.jsx";
 export default function Question({ questionIndex, onSelectAnswer, onSkipAnswer }) {
     const [answer, setAnswer] = useState({selectedAnswer: '', isCorrect: null});
 
+    let timer = 15000;
+
+    if (answer.selectedAnswer) {
+        timer = 1000;
+    }
+
+    if (answer.isCorrect !== null) {
+        timer = 2000;
+    }
+
     function handleSelectedAnswer(answer) {
         setAnswer({selectedAnswer: answer, isCorrect: null});
 
@@ -28,7 +38,7 @@ export default function Question({ questionIndex, onSelectAnswer, onSkipAnswer }
 
     return (
         <div id="question">
-            <QuestionTimer  timeout={15000} onTimeout={onSkipAnswer}></QuestionTimer>
+            <QuestionTimer key={timer} timeout={timer} onTimeout={answer.selectedAnswer === '' ? onSkipAnswer : null} mode={answerState}></QuestionTimer>
             <h2>{QUESTIONS[questionIndex].text} </h2>
             <Answers
                      answers={QUESTIONS[questionIndex].answers}
